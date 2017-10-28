@@ -20,7 +20,7 @@ body {
 
 /*Layout Styles*/
 
-.widget-container {
+#widget-container {
     padding-right: 15px; /*to make sure our content does not run directly to the edge and to set up the base for our 30px grid gutter*/
     padding-left: 15px;
     margin-right: auto; /*to auto center the container on the screen*/
@@ -96,10 +96,11 @@ body {
         display: table;
         clear: both;
     }
-    .remove-gutter-xs {
-        padding-left: 0px; /*remove paddings to flush with the window*/
+
+/*     .remove-gutter-xs {
+        padding-left: 0px; remove paddings to flush with the window
         padding-right: 0px;
-    }
+    }*/
 }
 /*Theme Styles*/
 
@@ -127,14 +128,16 @@ body {
 	background-color: #bd53cd;
 }
 
-/*search form control*/
-
 #search-form-container {
+    max-width: 300px;
+    margin: 15px auto;
     display: none;
-    margin: 0 auto;
-    z-index: 100500;
 }
 
 #shadow {
+    height: 100vh;
+    width: 100vw;
+    background-color: gray;
     opacity: 0.3;
+    z-index: 9999;
 }
