@@ -48,7 +48,7 @@ body {
 .cube--extended ul {
     padding: 0;
     margin: 0;
-    height: 35%;
+    height: 40%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
@@ -56,17 +56,17 @@ body {
 
 .cube--extended li {
     list-style: none;
-    font-size: .65rem;
+    font-size: .7rem;
     text-align: center;
     padding: 0 .2rem;
     margin: .5rem 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .cube--extended .cube__icon {
-    height: 45%;
+    height: 40%;
 }
 
 .cube--extended .cube__info {
@@ -75,7 +75,6 @@ body {
 
 .cube--extended li .owf {
     position: inherit;
-    font-size: 1.2rem;
 }
 
 @media (min-width: 48em) {
