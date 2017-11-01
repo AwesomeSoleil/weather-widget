@@ -1,6 +1,10 @@
 (function() {
 
     var list = document.querySelector(".cube--extended ul");//ugly but should be global to avoid multiple DOM queries
+    const method = "GET";
+    const APIKey = "bf03de8120fbabf27fdd083f9d1fddc0";
+    const baseAPICall = "http://api.openweathermap.org/data/2.5/";
+    const metricSystem = "units=metric";
 
     function init() {
         document.querySelector(".cube--extended").addEventListener("click", displayPrompt);
@@ -21,7 +25,9 @@
         function complete(value) {
             document.onkeydown = null;
             searchFormContainer.style.display = "none";
-            queryOpenWeatherMap(value, "forecast", document.querySelector(".cube--extended"));
+            if (value !== null) {
+                queryOpenWeatherMap(value, "forecast", document.querySelector(".cube--extended"));
+            }
         }
 
         form.onsubmit = function() {
@@ -47,12 +53,7 @@
         form.elements.text.focus();
     }
 
-    //***************end search form*******************************
-
-    const method = "GET";
-    const APIKey = "bf03de8120fbabf27fdd083f9d1fddc0";
-    const baseAPICall = "http://api.openweathermap.org/data/2.5/";
-    const metricSystem = "units=metric";    
+    //***************end search form*******************************    
 
     function queryOpenWeatherMap(cityName, queryType, cube) {
         var request = new XMLHttpRequest();
