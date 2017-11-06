@@ -1,6 +1,6 @@
 (function() {
 
-    var list = document.querySelector(".cube--extended ul");//ugly but should be global to avoid multiple DOM queries
+    let list = document.querySelector(".cube--extended ul");//ugly but should be global to avoid multiple DOM queries
     const method = "GET";
     const APIKey = "bf03de8120fbabf27fdd083f9d1fddc0";
     const baseAPICall = "http://api.openweathermap.org/data/2.5/";
@@ -8,9 +8,9 @@
 
     function init() {
         document.querySelector(".cube--extended").addEventListener("click", displayPrompt);
-        var cities = ["saint petersburg", "prague", "becici", "antalya", "atlanta"];
-        var cubes = document.getElementsByClassName("cube--current");
-        for (var i = 0; i < cubes.length; i ++) {
+        let cities = ["saint petersburg", "prague", "becici", "antalya", "atlanta"];
+        let cubes = document.getElementsByClassName("cube--current");
+        for (let i = 0; i < cubes.length; i ++) {
             queryOpenWeatherMap(cities[i], "weather", cubes[i]);
         }
     }
@@ -18,8 +18,8 @@
     //********************search form*******************************
 
     function displayPrompt() {
-        var form = document.getElementById("search-form");
-        var searchFormContainer = document.getElementById("search-form-container");
+        let form = document.getElementById("search-form");
+        let searchFormContainer = document.getElementById("search-form-container");
         form.elements.text.value = "";
 
         function complete(value) {
@@ -31,7 +31,7 @@
         }
 
         form.onsubmit = function() {
-            var userInput = form.elements.text.value;
+            let userInput = form.elements.text.value;
             if (userInput === "") {
                 return false;
             }
@@ -56,12 +56,12 @@
     //***************end search form*******************************    
 
     function queryOpenWeatherMap(cityName, queryType, cube) {
-        var request = new XMLHttpRequest();
-        var url = baseAPICall + queryType + "?q=" + cityName + "&" + metricSystem + "&&APPID=" + APIKey;
+        let request = new XMLHttpRequest();
+        let url = baseAPICall + queryType + "?q=" + cityName + "&" + metricSystem + "&&APPID=" + APIKey;
         request.open(method, url);
         request.onreadystatechange = function() {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                var data = JSON.parse(request.responseText);
+                let data = JSON.parse(request.responseText);
                 render(data, queryType, cube);
             } else if (request.readyState === XMLHttpRequest.DONE) {
                 alert("bad request");
@@ -71,8 +71,8 @@
     }
 
 function render(data, queryType, cube) {
-    var iconClass = null;
-    var cityNameSlashTemp = null;
+    let iconClass = null;
+    let cityNameSlashTemp = null;
 
     if (queryType === "weather") {
         iconClass = "owf owf-" + data["weather"][0]["id"] + " owf-5x";
@@ -94,23 +94,23 @@ function render(data, queryType, cube) {
 
     function setList(data) {
         list.innerHTML = "";
-        var docFragment = document.createDocumentFragment();
-        for (var i = 1; i < data["list"].length; i += 8) {
-            var listItem = document.createElement("li");
+        let docFragment = document.createDocumentFragment();
+        for (let i = 1; i < data["list"].length; i += 8) {
+            let listItem = document.createElement("li");
 
-            var dayDiv = document.createElement("div");
+            let dayDiv = document.createElement("div");
             dayDiv.textContent = getDayOfWeek(data["list"][i]["dt"]);
             listItem.appendChild(dayDiv);
 
-            var iconDiv = document.createElement("div");
-            var icon = document.createElement("i");
-            var iconClass = "icon owf owf-" + data["list"][i]["weather"][0]["id"] + " owf-2x";
+            let iconDiv = document.createElement("div");
+            let icon = document.createElement("i");
+            let iconClass = "icon owf owf-" + data["list"][i]["weather"][0]["id"] + " owf-2x";
             icon.setAttribute("class", iconClass);
             iconDiv.appendChild(icon);
             listItem.appendChild(iconDiv);
 
-            var tempDiv = document.createElement("div");
-            var temp = data["list"][i]["main"]["temp"].toFixed(0) + " &#8451;";
+            let tempDiv = document.createElement("div");
+            let temp = data["list"][i]["main"]["temp"].toFixed(0) + " &#8451;";
             tempDiv.innerHTML = temp;
             listItem.appendChild(tempDiv);
 
